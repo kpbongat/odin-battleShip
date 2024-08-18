@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "webpack --watch & webpack serve --open"
   },
   "keywords": [],
@@ -17,6 +17,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "html-webpack-plugin": "^5.6.0",
+    "jest": "^29.7.0",
     "style-loader": "^4.0.0",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4",
