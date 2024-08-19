@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "webpack --watch & webpack serve --open"
+    "test": "jest --watch",
+    "start": "webpack --watch & webpack serve --open "
   },
   "keywords": [],
   "author": "",
