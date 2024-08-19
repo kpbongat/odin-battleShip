@@ -1,4 +1,5 @@
 export default class Gameboard {
+  sunkenShips = 0;
   board = [];
   constructor() {
     for (let x = 0; x < 10; x++) {
@@ -14,6 +15,9 @@ export default class Gameboard {
     const ship = this.board[x][y];
     if (ship) {
       ship.hit();
+      if (ship.isSunk()) {
+        this.sunkenShips += 1;
+      }
     }
   }
 }
