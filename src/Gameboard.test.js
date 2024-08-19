@@ -15,3 +15,10 @@ test("Place ship to board", () => {
   gameboard.place(ship, [0, 0]);
   expect(gameboard.board[0][0]).toEqual(ship);
 });
+
+test("Receive attack sucessfully", () => {
+  const ship = new Ship(4);
+  gameboard.place(ship, [0, 0]);
+  gameboard.receiveAttack([0, 0]);
+  expect(gameboard.board[0][0].hits).toBe(1);
+});

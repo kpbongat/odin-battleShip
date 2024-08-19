@@ -9,4 +9,11 @@ export default class Gameboard {
   place(ship, [x, y]) {
     this.board[x][y] = ship;
   }
+
+  receiveAttack([x, y]) {
+    const ship = this.board[x][y];
+    if (ship) {
+      ship.hit();
+    }
+  }
 }
