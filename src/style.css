@@ -1,0 +1,23 @@
+.grid {
+  display: grid;
+  gap: 0px;
+}
+
+.main {
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}
+
+.main .grid {
+  grid-template: repeat(10, 64px) / repeat(10, 64px);
+}
+
+.empty {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.ship {
+  background-color: lightblue;
+  border: 3px solid blue;
+}

@@ -1,1 +1,15 @@
 import "./style.css";
+import Player from "./Player.js";
+import DOM from "./DOM";
+import Ship from "./Ship.js";
+const playerOne = new Player();
+const shipOne = new Ship(1);
+const shipTwo = new Ship(4);
+playerOne.gameboard.place(shipOne, [1, 1]);
+playerOne.gameboard.place(shipOne, [5, 2]);
+playerOne.gameboard.place(shipOne, [5, 3]);
+playerOne.gameboard.place(shipOne, [5, 4]);
+playerOne.gameboard.place(shipOne, [5, 5]);
+DOM.renderBoard(playerOne, 1);
+const playerTwo = new Player();
+DOM.renderBoard(playerTwo, 2);
