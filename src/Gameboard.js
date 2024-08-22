@@ -18,6 +18,8 @@ export default class Gameboard {
       if (ship.isSunk()) {
         this.sunkenShips += 1;
       }
+      return true;
     }
+    return false;
   }
 }

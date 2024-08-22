@@ -12,12 +12,22 @@
   grid-template: repeat(10, 64px) / repeat(10, 64px);
 }
 
+.ship {
+  background-color: lightblue;
+  border: 3px solid blue;
+}
+
 .empty {
   background-color: white;
   border: 1px solid black;
 }
 
-.ship {
-  background-color: lightblue;
-  border: 3px solid blue;
+.hit {
+  background-color: pink;
+  border: 3px solid red;
+}
+
+.miss {
+  background-color: grey;
+  border: 3px solid black;
 }
