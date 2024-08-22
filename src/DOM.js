@@ -1,3 +1,5 @@
+import GameController from "./GameController";
+
 export default class DOM {
   static initializeBoard(player, id) {
     const targetDiv = document.querySelector(`.main > .grid.player-${id}`);
@@ -11,12 +13,15 @@ export default class DOM {
           square.classList.add("empty");
         }
         square.addEventListener("click", () => {
-          if (player.gameboard.receiveAttack([x, y])) {
-            square.classList.add("hit");
-          } else {
-            square.classList.add("miss");
+          if (GameController.currentPlayer === id) {
+            if (player.gameboard.receiveAttack([x, y])) {
+              square.classList.add("hit");
+            } else {
+              square.classList.add("miss");
+            }
+            this.refreshBoard(player, targetDiv);
+            GameController.nextPlayer();
           }
-          this.refreshBoard(player, targetDiv);
         });
 
         targetDiv.appendChild(square);

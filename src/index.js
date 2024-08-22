@@ -2,6 +2,7 @@ import "./style.css";
 import Player from "./Player.js";
 import DOM from "./DOM";
 import Ship from "./Ship.js";
+import GameController from "./GameController.js";
 const playerOne = new Player();
 const shipOne = new Ship(1);
 const shipTwo = new Ship(4);
