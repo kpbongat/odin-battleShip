@@ -21,12 +21,14 @@ export default class DOM {
             }
             this.refreshBoard(player, targetDiv);
             GameController.nextPlayer();
+            this.displayCurrentPlayer();
           }
         });
 
         targetDiv.appendChild(square);
       }
     }
+    this.displayCurrentPlayer();
   }
 
   static refreshBoard(player, board) {
@@ -74,5 +76,10 @@ export default class DOM {
       squareIndex + 1,
       squareIndex + 10,
     ];
+  }
+
+  static displayCurrentPlayer() {
+    const currentPlayer = document.querySelector(".current-player");
+    currentPlayer.textContent = `Player ${GameController.currentPlayer} to move!`;
   }
 }
