@@ -64,14 +64,14 @@ export default class DOM {
         if (typeof squareContent === "object") {
           if (squareContent.isSunk()) {
             this.blockIllegalMoves(targetDivs, [
-              ...this.getAdjacents(gridIndex),
-              ...this.getCorners(gridIndex),
+              ...this.getAdjacents([x, y]),
+              ...this.getCorners([x, y]),
             ]);
           } else if (
             squareContent.hits > 0 &&
             square.classList.contains("hit")
           ) {
-            this.blockIllegalMoves(targetDivs, [...this.getCorners(gridIndex)]);
+            this.blockIllegalMoves(targetDivs, [...this.getCorners([x, y])]);
           }
         }
       }
@@ -79,26 +79,40 @@ export default class DOM {
   }
   static blockIllegalMoves(targetDivs, indices) {
     for (let i of indices) {
-      if (!targetDivs[i].classList.contains("hit")) {
-        targetDivs[i].classList.add("miss");
+      const [x, y] = i;
+      const gridIndex = x * 10 + y;
+      if (!targetDivs[gridIndex].classList.contains("hit")) {
+        targetDivs[gridIndex].classList.add("miss");
       }
     }
   }
-  static getCorners(squareIndex) {
-    return [
-      squareIndex - 11,
-      squareIndex - 9,
-      squareIndex + 9,
-      squareIndex + 11,
-    ];
+  static getCorners([x, y]) {
+    const corners = [];
+    corners.push([x - 1, y - 1]);
+    corners.push([x - 1, y + 1]);
+    corners.push([x + 1, y - 1]);
+    corners.push([x + 1, y + 1]);
+    return corners.filter((i) => {
+      const [x, y] = i;
+      if (x < 0 || x > 9 || y < 0 || y > 9) {
+        return false;
+      }
+      return true;
+    });
   }
-  static getAdjacents(squareIndex) {
-    return [
-      squareIndex - 10,
-      squareIndex - 1,
-      squareIndex + 1,
-      squareIndex + 10,
-    ];
+  static getAdjacents([x, y]) {
+    const adjacents = [];
+    adjacents.push([x - 1, y]);
+    adjacents.push([x + 1, y]);
+    adjacents.push([x, y - 1]);
+    adjacents.push([x, y + 1]);
+    return adjacents.filter((i) => {
+      const [x, y] = i;
+      if (x < 0 || x > 9 || y < 0 || y > 9) {
+        return false;
+      }
+      return true;
+    });
   }
 
   static displayCurrentPlayer() {
