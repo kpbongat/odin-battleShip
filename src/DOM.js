@@ -12,18 +12,38 @@ export default class DOM {
         } else {
           square.classList.add("empty");
         }
-        square.addEventListener("click", () => {
-          if (GameController.currentPlayer === id) {
-            if (player.gameboard.receiveAttack([x, y])) {
-              square.classList.add("hit");
-            } else {
-              square.classList.add("miss");
+        square.addEventListener(
+          "click",
+          () => {
+            if (GameController.currentPlayer === id) {
+              if (player.gameboard.receiveAttack([x, y])) {
+                square.classList.add("hit");
+              } else {
+                square.classList.add("miss");
+              }
+              this.refreshBoard(player, targetDiv);
+
+              GameController.nextPlayer();
+              this.displayCurrentPlayer();
+              if (GameController.currentPlayer === 2) {
+                while (true) {
+                  const [cpuX, cpuY] = GameController.getRandomMove();
+                  const randomSquare = document.querySelectorAll(
+                    `.main > .grid.player-2 > div`
+                  )[cpuX * 10 + cpuY];
+                  if (
+                    !randomSquare.classList.contains("hit") &&
+                    !randomSquare.classList.contains("miss")
+                  ) {
+                    randomSquare.click();
+                    break;
+                  }
+                }
+              }
             }
-            this.refreshBoard(player, targetDiv);
-            GameController.nextPlayer();
-            this.displayCurrentPlayer();
-          }
-        });
+          },
+          { once: true }
+        );
 
         targetDiv.appendChild(square);
       }
