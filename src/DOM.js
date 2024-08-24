@@ -22,21 +22,24 @@ export default class DOM {
                 square.classList.add("miss");
               }
               this.refreshBoard(player, targetDiv);
-
-              GameController.nextPlayer();
-              this.displayCurrentPlayer();
-              if (GameController.currentPlayer === 2) {
-                while (true) {
-                  const [cpuX, cpuY] = GameController.getRandomMove();
-                  const randomSquare = document.querySelectorAll(
-                    `.main > .grid.player-2 > div`
-                  )[cpuX * 10 + cpuY];
-                  if (
-                    !randomSquare.classList.contains("hit") &&
-                    !randomSquare.classList.contains("miss")
-                  ) {
-                    randomSquare.click();
-                    break;
+              if (GameController.checkGameEnd(player)) {
+                this.endGame();
+              } else {
+                GameController.nextPlayer();
+                this.displayCurrentPlayer();
+                if (GameController.currentPlayer === 2) {
+                  while (true) {
+                    const [cpuX, cpuY] = GameController.getRandomMove();
+                    const randomSquare = document.querySelectorAll(
+                      `.main > .grid.player-2 > div`
+                    )[cpuX * 10 + cpuY];
+                    if (
+                      !randomSquare.classList.contains("hit") &&
+                      !randomSquare.classList.contains("miss")
+                    ) {
+                      randomSquare.click();
+                      break;
+                    }
                   }
                 }
               }
@@ -101,5 +104,10 @@ export default class DOM {
   static displayCurrentPlayer() {
     const currentPlayer = document.querySelector(".current-player");
     currentPlayer.textContent = `Player ${GameController.currentPlayer} to move!`;
+  }
+
+  static endGame() {
+    const currentPlayer = document.querySelector(".current-player");
+    currentPlayer.textContent = `Player ${GameController.currentPlayer} wins!`;
   }
 }

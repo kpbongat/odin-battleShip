@@ -14,3 +14,8 @@ test("Get random legal move", () => {
   ).toBeGreaterThanOrEqual(0);
   expect(GameController.getRandomMove(new Gameboard())[1]).toBeLessThan(10);
 });
+
+test("Check game end", () => {
+  const winner = { gameboard: { sunkenShips: 10 } };
+  expect(GameController.checkGameEnd(winner)).toEqual(winner);
+});

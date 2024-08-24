@@ -1,5 +1,3 @@
-import Player from "./Player";
-
 export default class GameController {
   static currentPlayer = 1;
 
@@ -12,5 +10,13 @@ export default class GameController {
     const y = Math.floor(Math.random() * 10);
 
     return [x, y];
+  }
+
+  static checkGameEnd(player) {
+    if (player.gameboard.sunkenShips === 10) {
+      return player;
+    }
+
+    return false;
   }
 }
